@@ -1,7 +1,7 @@
 # StoryPoints AI – Data Engineering Internship (Week 1)
 
 ## Overview
-This project implements an ETL pipeline that extracts clickstream and transaction data, applies transformations, and stores cleaned outputs in Google Cloud Storage (GCS). It also fetches live currency exchange rates from the ExchangeRate API and enriches transaction data.
+This project implements an ETL (Extract, Transform, Load) pipeline that extracts clickstream and transaction data, applies transformations, and stores cleaned outputs in Google Cloud Storage (GCS). It also fetches live currency exchange rates from the ExchangeRate API and enriches transaction data.
 
 ---
 
@@ -24,7 +24,7 @@ This project implements an ETL pipeline that extracts clickstream and transactio
 - Live rates fetched from `https://v6.exchangerate-api.com/v6/{API_KEY}/latest/USD`  
 - Raw JSON stored daily at: `data/raw/api_currency/YYYY-MM-DD/rates.json`
 
-* ![Screenshot of API raw JSON file saved locally](API_raw_JSON_file.png)
+![Screenshot of API raw JSON file saved locally](API_raw_JSON_file.png)
 
 ---
 
@@ -41,7 +41,7 @@ This project implements an ETL pipeline that extracts clickstream and transactio
 ## Output Structure
 This shows how processed outputs are organized in **Google Cloud Storage (GCS)**:
 
-* ![Screenshot of GCS bucket with partitioned outputs](GCS_bucket.png)
+![Screenshot of GCS bucket with partitioned outputs](GCS_bucket.png)
 
 - Ensures each dataset is stored in a structured, partitioned way by ingestion date.  
 - Makes it easier for analytics and downstream pipelines like BigQuery to query data by time period.    
@@ -60,14 +60,15 @@ The pipeline has structured logging and warning messages.
   - Currency codes are not found in the exchange rates  
 - Ensures visibility into ETL health without manual debugging.  
 
-
-* ![Screenshot of log outputs from pipeline run](pipeline_logs.png)
+![Screenshot of log outputs from pipeline run](pipeline_logs.png)
 
 ---
 
 ## Architecture Diagram
 
 ![Architecture Diagram](architecture_diagram.png)
+
+The architecture diagram shows how raw clickstream, transaction CSVs, and API data flow through the ETL pipeline (Extract -> Transform -> Load). Cleaned, partitioned outputs are stored in Google Cloud Storage, with logging and alerts ensuring pipeline reliability.
 
 ---
 
