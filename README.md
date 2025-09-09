@@ -24,7 +24,7 @@ This project implements an ETL pipeline that extracts clickstream and transactio
 - Live rates fetched from `https://v6.exchangerate-api.com/v6/{API_KEY}/latest/USD`  
 - Raw JSON stored daily at: `data/raw/api_currency/YYYY-MM-DD/rates.json`
 
-* [!API raw JSON file.png] Screenshot of API raw JSON file saved locally
+* ![Screenshot of API raw JSON file saved locally](API_raw_JSON_file.png)
 
 ---
 
