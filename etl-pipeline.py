@@ -64,7 +64,7 @@ def upload_to_gcs(local_file: str, gcs_path: str) -> None:
     bucket = client.bucket(BUCKET_NAME)
     blob = bucket.blob(gcs_path)
     blob.upload_from_filename(local_file)
-    logging.info(f"☁️ Uploaded {local_file} → gs://{BUCKET_NAME}/{gcs_path}")
+    logging.info(f"Uploaded {local_file} → gs://{BUCKET_NAME}/{gcs_path}")
 
 # ETL Functions
 
