@@ -12,15 +12,15 @@ import requests
 from google.cloud import storage
 
 # Setting Paths and constants
-CLICKSTREAM_PATH = "clickstream.csv"
-TRANSACTIONS_PATH = "transactions.csv"
-BUCKET_NAME = "storypoints-ai-data-bucket"
-API_KEY = "b74bf2ded174e3515ea87712"  
+CLICKSTREAM_PATH = "data given/clickstream.csv"
+TRANSACTIONS_PATH = "data given/transactions.csv"
+# BUCKET_NAME = "storypoints-ai-data-bucket"
+# API_KEY = "b74bf2ded174e3515ea87712"  
 
-# load_dotenv()
+load_dotenv()
 
-# API_KEY = os.getenv("API_KEY")
-# BUCKET_NAME = os.getenv("BUCKET_NAME")
+API_KEY = os.getenv("API_KEY")
+BUCKET_NAME = os.getenv("BUCKET_NAME")
 
 API_URL = f"https://v6.exchangerate-api.com/v6/{API_KEY}/latest/USD"
 
