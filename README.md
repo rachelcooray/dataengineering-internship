@@ -132,10 +132,7 @@ Metadata is tracked in `/week2/orchestration/metadata/run_log.csv`, managed by `
 
 Each pipeline run appends a new row:
 
-```csv
-dataset,rows_in,rows_out,validation_status,timestamp
-transactions,100000,100000,PASS,2025-09-15 21:57:36
-```
+![Screenshot of appended row](images/appended_row.png)
 
 * **rows\_in**: records ingested.
 * **rows\_out**: records after validation & deduplication.
