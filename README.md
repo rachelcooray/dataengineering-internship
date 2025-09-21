@@ -161,3 +161,62 @@ Alerts are implemented in `log_utils.py` and triggered via Airflow `on_failure_c
 * ✅ **Idempotence**: reruns do not duplicate data in GCS.
 
 ---
+
+# StoryPoints AI – Data Engineering Internship (Week 3)
+
+## Overview
+In **Week 3**, the focus shifted to **scalable data processing and analytics**.  
+The cleaned clickstream and transaction datasets were processed using **Apache Spark** and stored in **Google Cloud Storage (GCS)** as **partitioned Parquet files**.  
+These outputs were then registered as **external tables in BigQuery**, enabling advanced analytical queries for business insights.
+
+---
+
+## Spark Jobs
+
+All Spark jobs are stored in `/week3_spark_jobs/`.  
+
+**Key processing steps:**
+1. **Read raw data** from GCS (clickstream, transactions, and API currency rates).  
+2. **Apply transformations**:
+   - Standardization of schema.  
+   - Deduplication & null handling.  
+   - Enrichment of transactions with `amount_in_usd`.  
+3. **Write outputs** as **partitioned Parquet files**.  
+
+---
+
+## Data Partitioning
+
+Partitioning was implemented to **optimize storage and query costs**:  
+- **Clickstream** → partitioned by `ingest_date` (daily).  
+- **Transactions** → partitioned by `txn_date` (derived from `txn_time`).  
+- **API rates** → partitioned by `ingest_date`.  
+
+This allows BigQuery queries to **filter only the last 30 days**, avoiding full-table scans.  
+
+**Example GCS structure:**
+
+**Screenshots:**
+![Clickstream Parquet Output](images/week3/clickstream_parquet.png)  
+![Transactions Parquet Output](images/week3/transactions_parquet.png)  
+
+---
+
+## Analytical Queries
+
+All queries are stored in `/queries/week3_analysis.sql`.  
+
+**The queries include:**  
+1. Daily Active Users (DAU) by country (last 30 days)  
+2. Revenue per currency vs USD (last 30 days)  
+3. Funnel analysis: visits → cart → transactions  
+4. Partition filter cost comparison (with vs. without partition filters)  
+
+**Screenshots of query results:**  
+![DAU by Country – Last 30 Days](images/week3/dau_by_country.png)  
+![Revenue per Currency vs USD – Last 30 Days](images/week3/revenue_vs_usd.png)  
+![Funnel Visits → Cart → Transactions – Last 30 Days](images/week3/funnel_visits_cart_txn.png)  
+![Partition Filter Cost Comparison – With Partition Filter](images/week3/partition_cost_with.png)  
+![Partition Filter Cost Comparison – Without Partition Filter](images/week3/partition_cost_without.png)  
+
+---
